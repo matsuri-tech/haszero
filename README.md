@@ -1,6 +1,6 @@
 ## HasZero
 
-This utility library to check given struct has zero value 
+a utility library to check given struct has zero value 
 
 ## Usage
 
