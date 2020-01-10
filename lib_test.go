@@ -77,5 +77,37 @@ func TestHasZero(t *testing.T) {
 	if err := HasZero(ee); err != nil {
 		t.Error(err)
 	}
+	if err := HasZero(&ee); err == nil {
+		t.Error(err)
+	}
+
+	type H struct {
+		ccc string
+	}
+
+	type G struct {
+		aaa string
+		h   H
+	}
+
+	type F struct {
+		g *G
+	}
+	f := F{}
+	if err := HasZero(f); err == nil {
+		t.Error(f)
+	}
+
+	ff := F{
+		g: &G{
+			aaa: "aaa",
+			h: H{
+				ccc: "",
+			},
+		},
+	}
+	if err := HasZero(ff); err == nil {
+		t.Error(ff)
+	}
 
 }
